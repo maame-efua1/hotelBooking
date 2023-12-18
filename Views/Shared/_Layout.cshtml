@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookWithEase</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookWithEase.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+        <div class="logo">BookWithEase</div>
+        <div class="menu-toggle">&#9776;</div>
+        <ul class="nav-links">
+        <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li><a asp-action="Index" asp-controller="Home">Services</a></li>
+        <li><a asp-action="Index" asp-controller="Home">Gallery</a></li>
+        <li><a asp-action="Index" asp-controller="Home">Contact</a></li>
+        <li><a asp-action="Index" asp-controller="Booking" class="book-button">Book A Room</a></li>
+        </ul>
+        </nav>
+    </header>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+    </script>
+    
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Hotel Website</p>
+            <div class="social-links1">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
