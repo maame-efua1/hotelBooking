@@ -11,7 +11,10 @@
         public string pricePernight { get; set; }
 
         public string roomSize { get; set; }
-         public string roomfloor { get; set; }
+
+        public string roomfloor { get; set; }
+        
+        public int guests { get; set; }
 
       }
 }

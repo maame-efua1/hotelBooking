@@ -9,6 +9,7 @@
 <body>
     <section class="welcome-sectionb" id="home">
         <div class="container3">
+            <h2 id="heading">Available Rooms</h2>
             <table class="room-table">
                 <thead>
                     <tr>
@@ -16,6 +17,7 @@
                         <th>Type</th>
                         <th>Price per Night</th>
                         <th>Floor</th>
+                        <th>Room Size</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -27,11 +29,13 @@
                 <td>@item.roomtype</td>
                 <td>@item.pricePernight</td>
                 <td>@item.roomfloor</td>
+                <td>@item.roomSize</td>
                 <td><button asp-action="Confirm Booking" asp-controller="Booking">Book</button></td>
             </tr>
         }
                 </tbody>
             </table>
+            </div>
     </section>
 </body>
 </html>

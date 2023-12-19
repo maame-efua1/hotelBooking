@@ -29,11 +29,16 @@
       box-shadow: 0 0 15px rgb(211 9 9 / 45%);
     }
 
-.room-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
+        #heading{
+            text-align:center;
+            text-decoration:overline;
+        }
+
+        .room-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
   
   .room-table th,
   .room-table td {

@@ -1,6 +1,7 @@
 ﻿using BookWithEase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BookWithEase.Controllers
 {
@@ -11,21 +12,25 @@ namespace BookWithEase.Controllers
             return View();
         }   
            
-        public IActionResult AvailableRooms(Room Room)
+        public IActionResult AvailableRooms( string guests, DateOnly checkIn, DateOnly checkOut)
         {
                 string connectionString = "Server=LAPTOP-LIL017KH\\SQLEXPRESS;Database=BookWithEase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True";
 
                 SqlConnection connection = new SqlConnection(connectionString);
 
-                string query = ;
+            string query = $"SELECT r.roomId, r.room_no, r.roomtype, r.pricePernight,r.roomfloor, r.roomSize FROM Room r LEFT JOIN Booking b ON r.roomId = b.roomId AND (b.CheckOut IS NULL OR b.CheckOut < DATEADD(DAY, -1, '{checkIn.ToString("yyyy-MM-dd")}'))" +
+                           $"WHERE r.roomId NOT IN(SELECT roomId FROM Booking WHERE (CheckIn < DATEADD(DAY, 1, '{checkOut.ToString("yyyy-MM-dd")}') AND CheckOut > DATEADD(DAY, -1, '{checkIn.ToString("yyyy-MM-dd")}')) )";
+                               //$"AND((r.roomtype = 'single' AND {guests} BETWEEN 1 AND 2) OR(r.roomtype = 'double' AND {guests} BETWEEN 3 AND 4)"+
+                               //$"OR(r.roomtype = '' AND {guests} BETWEEN 5 AND 10) )";
 
-                SqlCommand command = new SqlCommand(query, connection);
+
+            SqlCommand command = new SqlCommand(query, connection);
 
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                List<Room> room = new List<Room>();
+            List<Room> room = new List<Room>();
 
 
                 while (reader.Read())
