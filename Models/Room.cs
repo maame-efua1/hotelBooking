@@ -15,6 +15,10 @@
         public string roomfloor { get; set; }
         
         public int guests { get; set; }
+        public string checkIn { get; set; }
+        public string checkOut { get; set; }
 
-      }
+        public DateTime dateBooked { get; set; } = DateTime.Now.Date;
+
+    }
 }

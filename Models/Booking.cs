@@ -2,9 +2,9 @@
 {
     public class Booking
     {
-        public DateOnly checkIn { get; set; }   
+        public string checkIn { get; set; }   
 
-        public DateOnly CheckOut { get; set; }
+        public string checkOut { get; set; }
 
         public decimal totalPrice { get; set; }
 
@@ -12,7 +12,7 @@
 
         public string roomId { get; set; }
 
-        public DateTime dateBooked { get; set; } = DateTime.Now;
+        public DateTime dateBooked { get; set; } = DateTime.Now.Date;
 
         
     }

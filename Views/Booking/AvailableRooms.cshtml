@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                     @foreach (var item in Model)
+                    @foreach (var item in Model) 
         {
             <tr>
                 <td>@item.room_no</td>
@@ -30,7 +30,7 @@
                 <td>@item.pricePernight</td>
                 <td>@item.roomfloor</td>
                 <td>@item.roomSize</td>
-                <td><button asp-action="Confirm Booking" asp-controller="Booking">Book</button></td>
+                <td> <button><a href="/Booking/ConfirmBooking?roomid=@(item.roomId)&room_no=@(item.room_no)&roomtype=@(item.roomtype)&pricePernight=@(item.pricePernight)&roomfloor=@(item.roomfloor)&roomSize=@(item.roomSize)">Book@* <i class="fas fa-select"></i> *@</a></button></td>
             </tr>
         }
                 </tbody>

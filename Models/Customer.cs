@@ -10,6 +10,6 @@
 
         public string phone { get; set; }
 
-        public DateTime dateCreated { get; set; } = DateTime.Now;
+        public DateTime dateCreated { get; set; } = DateTime.Now.Date;
     }
 }

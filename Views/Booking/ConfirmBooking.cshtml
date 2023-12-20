@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,21 +16,31 @@
                     <div class="column2">
                         <div class="form-row">
                             <label for="roomNumber">Room Number:</label>
-                            <input type="number" id="roomNumber" name="roomNumber" required readonly>
+                            <input type="number" id="room_no" name="room_no" value="@Model.room_no" required readonly>
                         </div>
                         <div class="form-row">
                             <label for="type">Type:</label>
-                            <input type="text" id="roomtype" name="roomtype" required readonly>
+                            <input type="text" id="roomtype" name="roomtype" value="@Model.roomtype" required readonly>
+                        </div>
+                    </div>
+                    <div class="column2">
+                        <div class="form-row">
+                            <label for="size">Size:</label>
+                            <input type="text" id="roomSize" name="roomSize" value="@Model.roomSize" required readonly>
+                        </div>
+                        <div class="form-row">
+                            <label for="floor">Floor:</label>
+                            <input type="number" id="roomfloor" name="roomfloor" value="@Model.roomfloor" required readonly>
                         </div>
                     </div>
                     <div class="column2">
                         <div class="form-row">
                             <label for="pricePerNight">Price per Night:</label>
-                            <input type="number" id="pricePerNight" name="pricePerNight" required readonly>
+                            <input type="number" id="pricePernight" name="pricePernight" value="@Model.pricePernight" required readonly>
                         </div>
                         <div class="form-row">
-                            <label for="floor">Floor:</label>
-                            <input type="number" id="floor" name="floor" required readonly>
+                            <label for="totalPrice">Total Price:</label>
+                            <input type="number" id="totalPrice" name="totalPrice" required readonly>
                         </div>
                     </div>
                 </div>
@@ -38,11 +49,11 @@
                     <div class="column2">
                         <div class="form-row">
                             <label for="firstName">First Name:</label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Your Firstname">
+                            <input type="text" id="firstname" name="firstname" placeholder="Your Firstname">
                         </div>
                         <div class="form-row">
                             <label for="lastName">Last Name:</label>
-                            <input type="text" id="lastName" name="lastName" placeholder="Your LastName">
+                            <input type="text" id="lastname" name="lastname" placeholder="Your LastName">
                         </div>
                     </div>
                     <div class="column2">
@@ -56,26 +67,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-section bookingdates">
+                <div class="form-section" id="bookingdates">
                     <h2>Booking Dates</h2>
                     <div class="column2">
                         <div class="form-row">
                             <label for="arrival">Arrival Date:</label>
-                            <input type="date" id="arrival" name="arrival" required readonly>
+                            <input type="text" id="checkIn" name="checkIn" value="@Model.checkIn" required readonly />
                         </div>
                         <div class="form-row">
                             <label for="departure">Departure Date:</label>
-                            <input type="date" id="departure" name="departure" required readonly>
+                            <input type="text" id="checkOut" name="CheckOut" value="@Model.checkOut" required readonly />
                         </div>
-                    </div>
-                    <div class="column2">
                         <div class="form-row">
                             <label for="dateBooked">Date Booked:</label>
-                            <input type="date" id="dateBooked" name="dateBooked" required readonly>
-                        </div>
-                        <div class="form-row">
-                            <label for="totalPrice">Total Price:</label>
-                            <input type="number" id="totalPrice" name="totalPrice" required readonly>
+                            <input type="text" id="dateBooked" name="dateBooked" value="@Model.dateBooked" required readonly />
                         </div>
                     </div>
                 </div>

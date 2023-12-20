@@ -30,8 +30,11 @@
   }
 
 .reservation-form {
-  max-width: 600px;
-  margin: 0 auto;
+    max-width: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-section {
@@ -50,10 +53,11 @@
 }
 
 .form-row label {
-  flex: 3;
+  flex: 2;
   text-align: justify;
   margin-left: 10px;
   font-weight: bold;
+  margin-right:7px;
 }
 
 .form-row input[type="text"],
@@ -65,7 +69,8 @@
   border: none;
   border-bottom: 1px solid #ee0000;
   padding: 5px;
-  width:140px;
+  width:170px;
+  text-align:center;
 }
 
 .reservation-form input[type="submit"] {
@@ -97,4 +102,7 @@
   width: 48%;
 }
 
+#bookingdates label{
+
+}
 

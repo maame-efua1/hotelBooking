@@ -13,11 +13,11 @@
         <form class="reservation-form" asp-action="AvailableRooms" asp-controller="Booking" method="post">
             <div class="form-row1">
                 <label for="arrival">Arrival:</label>
-                <input type="date" id="checkIn" name="checkIn"  required>
+                <input type="date" id="checkIn" name="checkIn" min="" required>
             </div>
             <div class="form-row1">
                 <label for="departure">Departure:</label>
-                    <input type="date" id="checkOut" name="checkOut"  required>
+                    <input type="date" id="checkOut" name="checkOut" min="" required>
             </div>
             <div class="form-row1">
                 <label for="guests">Number of Guests:</label>
@@ -29,5 +29,10 @@
         </form>
     </div>
 </section>
+<script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkOut').min = today;
+        document.getElementById('checkIn').min = today;
+</script>
 </body>
 </html>
