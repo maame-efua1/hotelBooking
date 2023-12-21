@@ -18,7 +18,9 @@
         public string checkIn { get; set; }
         public string checkOut { get; set; }
 
-        public DateTime dateBooked { get; set; } = DateTime.Now.Date;
+        public string dateBooked { get; set; }
+
+        public string successMessage { get; set; } = "Room has been successfully booked. You'll recieve an email with your booking details. Thank you.";
 
     }
 }

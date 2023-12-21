@@ -12,7 +12,7 @@
 
         public string roomId { get; set; }
 
-        public DateTime dateBooked { get; set; } = DateTime.Now.Date;
+        public String dateBooked { get; set; }
 
         
     }

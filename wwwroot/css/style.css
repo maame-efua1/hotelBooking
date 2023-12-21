@@ -98,28 +98,32 @@ body {
     background-position: right;
     padding: 100px 0;
     text-align: center;
-    height: 370px;
+    height: 500px;
   }
-  
-  .container1 {
+
+.container1 {
     max-width: 960px;
     margin: 0 auto;
     width: 500px;
-    height: 220px;
+    height: 270px;
     background-color: #000000ba;
     padding: 1px;
-  }
-  
-  .welcome-section h1 {
+}
+
+.welcome-section h1 {
     font-size: 36px;
-    color: #ffffff;
-  }
-  
-  .welcome-section p {
+    color: #ceab83;
+    margin: 20px;
+    font-family: auto;
+    font-weight: 600;
+}
+
+.welcome-section p {
     font-size: 18px;
-    color: #5963e9;
-    margin-bottom: 30px;
-  }
+    color: #fff;
+    margin: 30px;
+    font-family: cursive;
+}
   
   .book-now-button {
     background-color: #ff0000;
@@ -141,13 +145,14 @@ body {
     background-color: #f3f3f3;
     text-align: center;
   }
-  
-  .services-section h1 {
-    font-size: 32px;
-    color: #000000;
-    text-decoration: overline;
-    margin-bottom: 40px;
-  }
+
+    .services-section h1 {
+        font-size: 32px;
+        color: #000000;
+        text-decoration: overline;
+        margin-bottom: 40px;
+        font-weight: 800;
+    }
   
   .services-grid {
     display: flex;
@@ -186,13 +191,14 @@ body {
     background-color: #f8f9fa;
     text-align: center;
   }
-  
-  .gallery-section h1 {
-    font-size: 32px;
-    color: #000000;
-    text-decoration: overline;
-    margin-bottom: 40px;
-  }
+
+    .gallery-section h1 {
+        font-size: 32px;
+        color: #000000;
+        text-decoration: overline;
+        margin-bottom: 40px;
+        font-weight: 800;
+    }
   
   .gallery-grid {
     display: grid;
@@ -248,13 +254,14 @@ body {
     position: relative;
     z-index: 1; 
   }
-  
-  .contact-section h1 {
-    font-size: 32px;
-    color: #ffffff;
-    text-decoration: overline;
-    margin-bottom: 40px;
-  }
+
+    .contact-section h1 {
+        font-size: 32px;
+        color: #000000;
+        text-decoration: overline;
+        margin-bottom: 40px;
+        font-weight: 800;
+    }
   
   .info-item {
     flex: 1;
@@ -298,7 +305,7 @@ body {
 
 .contact-wrapper {
   display: flex;
-  justify-content: space-center;
+  justify-content: center;
 }
 
 .contact-info {
@@ -383,4 +390,19 @@ input[type="submit"]:hover
 .reservation-form .column2{
   display: flex;
   justify-content: space-around;
+}
+
+.alert {
+    margin-left: 290px;
+    position: absolute;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+ .alert-danger {
+    color: #b70010;
+    background-color: #ffe7e9bf;
+    border-color: #d50000;
 }

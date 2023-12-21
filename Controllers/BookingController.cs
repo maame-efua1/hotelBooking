@@ -1,6 +1,8 @@
 ﻿using BookWithEase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Data.Common;
+using System.Transactions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
@@ -30,6 +32,7 @@ namespace BookWithEase.Controllers
 
             HttpContext.Session.SetString("checkin", checkIn.ToString());
             HttpContext.Session.SetString("checkout", checkOut.ToString());
+            HttpContext.Session.SetString("datebooked", DateTime.Now.Date.ToString("dd/MM/yyyy"));
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -60,52 +63,17 @@ namespace BookWithEase.Controllers
             return View(room);
         }
 
-        [HttpPost]
-        public IActionResult ConfirmBooking(int roomId, Booking Booking, Customer User)
-        {
-            string connectionString = "Server=LAPTOP-LIL017KH\\SQLEXPRESS;Database=BookWithEase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO Booking (CheckIn, checkOut, totalPrice, roomId, /*customerId,*/ dateBooked)" +
-                               "VALUES (@checkIn, @checkOut, @totalPrice, @roomId, /*@customerId,*/ @dateBooked);" +
-                               "INSERT INTO Customer (firstname, lastname, email, phone, dateCreated)" +
-                               "VALUES (@firstname, @lastname, @email, @phone, @dateCreated)";
-
-
-                SqlCommand command = new SqlCommand(query, connection);
-
-
-                command.Parameters.AddWithValue("@firstname", User.firstname);
-                command.Parameters.AddWithValue("@lastname", User.lastname);
-                command.Parameters.AddWithValue("@email", User.email);
-                command.Parameters.AddWithValue("@phone", User.phone);
-                command.Parameters.AddWithValue("@phone", User.dateCreated);
-                command.Parameters.AddWithValue("@checkIn", Booking.checkIn);
-                command.Parameters.AddWithValue("@checkOut", Booking.checkOut);
-                command.Parameters.AddWithValue("@dateBooked", Booking.dateBooked);
-                command.Parameters.AddWithValue("@totalPrice", Booking.totalPrice);
-                command.Parameters.AddWithValue("@roomId", roomId);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-
-                return RedirectToAction("Index", "Home");
-
-                connection.Close();
-
-            }
-            return View();
-        }
         public IActionResult ConfirmBooking(int roomid)
         {
             var checkIn = HttpContext.Session.GetString("checkin");
             var checkOut = HttpContext.Session.GetString("checkout");
+            var dateBooked = HttpContext.Session.GetString("datebooked");
 
             var booking = new Booking();
             booking.checkIn = checkIn;
             booking.checkOut = checkOut;
-           
+            booking.dateBooked = dateBooked;
+
 
             string connectionString = "Server=LAPTOP-LIL017KH\\SQLEXPRESS;Database=BookWithEase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True";
 
@@ -141,11 +109,9 @@ namespace BookWithEase.Controllers
                         roomSize = roomSize,
                         checkIn = checkIn,
                         checkOut = checkOut,
-                        dateBooked = DateTime.Now.Date
+                        dateBooked = dateBooked
 
                     };
-
-                    ViewData["checkin"] = checkIn;
 
                     return View(room);
                 }
@@ -162,5 +128,52 @@ namespace BookWithEase.Controllers
 
             return View(booking);
         }
+
+        [HttpPost]
+        public IActionResult ConfirmBooking(int roomid, Booking Booking, Customer User)
+        {
+            string connectionString = "Server=LAPTOP-LIL017KH\\SQLEXPRESS;Database=BookWithEase;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string queryCustomer = "INSERT INTO Customer (firstName, lastName, Email, Phone, DateCreated) " +
+                                  "VALUES (@firstname, @lastname, @email, @phone, @dateCreated);";
+                                  
+
+                SqlCommand command = new SqlCommand(queryCustomer, connection);
+
+
+                command.Parameters.AddWithValue("@firstname", User.firstname);
+                command.Parameters.AddWithValue("@lastname", User.lastname);
+                command.Parameters.AddWithValue("@email", User.email);
+                command.Parameters.AddWithValue("@phone", User.phone);
+                command.Parameters.AddWithValue("@dateCreated", User.dateCreated);
+
+               
+
+                string queryBooking = "INSERT INTO Booking (CheckIn, CheckOut, totalPrice, customerId, roomId, dateBooked) " +
+                                               "VALUES (@checkIn, @checkOut, @totalPrice, @customerId, @roomId, @dateBooked);";
+
+                SqlCommand command2 = new SqlCommand(queryBooking, connection);
+
+                command.Parameters.AddWithValue("@checkIn", Booking.checkIn);
+                command.Parameters.AddWithValue("@checkOut", Booking.checkOut);
+                command.Parameters.AddWithValue("@dateBooked", Booking.dateBooked);
+                command.Parameters.AddWithValue("@totalPrice", Booking.totalPrice);
+                command.Parameters.AddWithValue("@roomId", roomid);
+
+                
+                command.ExecuteNonQuery();
+
+                connection.Close();
+
+            }
+            TempData["successMessage"] = "Room has been successfully booked. You'll recieve an email with your booking details. Thank you.";
+            return RedirectToAction("Index", "Home");
+        }
+
+        
     }
 }

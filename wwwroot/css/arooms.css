@@ -73,4 +73,9 @@
   .room-table button:hover {
     background-color: #cc0000;
   }
+
+  .room-table a{
+      text-decoration:none;
+      color:white;
+  }
   

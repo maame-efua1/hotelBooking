@@ -2,6 +2,7 @@
 {
     public class Customer
     {
+        public int customerId { get; set; }
         public string firstname { get; set; }
 
         public string lastname { get; set; }
