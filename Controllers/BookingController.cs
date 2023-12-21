@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data.Common;
-using System.Transactions;
+
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
@@ -44,7 +44,7 @@ namespace BookWithEase.Controllers
                 List<Room> room = new List<Room>();
 
 
-                while (reader.Read())
+            while (reader.Read()) 
                 {
                     Room rooms = new Room();
                     rooms.roomId = reader["roomId"].ToString();
@@ -140,7 +140,7 @@ namespace BookWithEase.Controllers
                     connection.Open();
 
                     string queryCustomer = "INSERT INTO Customer (firstName, lastName, Email, Phone, DateCreated) " +
-                                      "VALUES (@firstname, @lastname, @email, @phone, @dateCreated);";
+                                      "VALUES (@firstname, @lastname, @email, @phone, @dateCreated);SELECT CAST(scope_identity() AS int);";
 
 
                     SqlCommand command = new SqlCommand(queryCustomer, connection);
@@ -152,23 +152,28 @@ namespace BookWithEase.Controllers
                     command.Parameters.AddWithValue("@phone", User.phone);
                     command.Parameters.AddWithValue("@dateCreated", User.dateCreated);
 
+                command.ExecuteNonQuery();
+
+                int customerId = (int)command.ExecuteScalar();
 
 
-                    string queryBooking = "INSERT INTO Booking (CheckIn, CheckOut, totalPrice, customerId, roomId, dateBooked) " +
-                                                   "VALUES (@checkIn, @checkOut, @totalPrice, @customerId, @roomId, @dateBooked);";
+                string queryBooking = "INSERT INTO Booking (CheckIn, CheckOut, totalPrice, customerId, roomId, dateBooked) " +
+                                               "VALUES (@checkIn, @checkOut, @totalPrice, @customerId, @roomId, @dateBooked);";
 
-                    SqlCommand command2 = new SqlCommand(queryBooking, connection);
+                SqlCommand command2 = new SqlCommand(queryBooking, connection);
 
-                    command.Parameters.AddWithValue("@checkIn", Booking.checkIn);
-                    command.Parameters.AddWithValue("@checkOut", Booking.checkOut);
-                    command.Parameters.AddWithValue("@dateBooked", Booking.dateBooked);
-                    command.Parameters.AddWithValue("@totalPrice", Booking.totalPrice);
-                    command.Parameters.AddWithValue("@roomId", roomid);
+                command2.Parameters.AddWithValue("@checkIn", Booking.checkIn);
+                command2.Parameters.AddWithValue("@checkOut", Booking.checkOut);
+                command2.Parameters.AddWithValue("@dateBooked", Booking.dateBooked1);
+                command2.Parameters.AddWithValue("@totalPrice", Booking.totalPrice);
+                command2.Parameters.AddWithValue("@roomId", roomid);
+                command2.Parameters.AddWithValue("@customerId", customerId);
 
 
-                    command.ExecuteNonQuery();
+                command2.ExecuteNonQuery();
 
-                    connection.Close();
+
+                connection.Close();
 
                 }
                 TempData["successMessage"] = "Room has been successfully booked. You'll recieve an email with your booking details. Thank you.";
