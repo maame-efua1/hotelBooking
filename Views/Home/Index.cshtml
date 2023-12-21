@@ -12,12 +12,12 @@
     {
         <div class="alert alert-danger" role="alert">
             @TempData["successMessage"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: red;border: none;background-color: unset;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: green;border: none;background-color: unset;">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
     }
-
+    
     <section class="welcome-section" id="home">
         <div class="container1">
             <h1>Welcome to Our Hotel</h1>
@@ -95,22 +95,23 @@
     <br>
     <br>
 
-    <section class="contact-section">
+    
+    <section class="contact-section" >
         <div class="container">
             <h1>CONTACT US</h1>
             <div class="contact-wrapper">
                 <div class="contact-form">
                     <form action="#" method="post">
                         <div class="form-row">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <input type="text" id="f_name" name="f_name" placeholder="Your Name" required>
+                            <input type="email" id="f_email" name="f_email" placeholder="Your Email" required>
                         </div>
                         <div class="form-row">
-                            <input type="tel" id="number" name="number" placeholder="Your Number" required>
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <input type="tel" id="f_number" name="f_number" placeholder="Your Number" required>
+                            <input type="text" id="f_subject" name="f_subject" placeholder="Subject" required>
                         </div>
                         <div class="form-row">
-                            <input type="text" id="message" name="message" placeholder="Your Message" required></textarea>
+                            <input type="text" id="f_message" name="f_message" placeholder="Your Message" required>
                         </div>
                         <input type="submit" value="Submit">
                     </form>
@@ -136,6 +137,16 @@
                 </div>
 
             </div>
+
+            @if (TempData["fsuccessMessage"] != null)
+            {
+                <div class="alert2 alert-danger" role="alert">
+                    @TempData["fsuccessMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: green;border: none;background-color: unset;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
         </div>
     </section>
 

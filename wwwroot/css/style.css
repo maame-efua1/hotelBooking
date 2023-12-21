@@ -237,7 +237,7 @@ body {
     background-image: url('/img/background.jpg'); 
     background-size: cover;
     background-position: center;
-    height: 470px;
+    height: 550px;
   }
   
   .contact-section::before {
@@ -257,7 +257,7 @@ body {
 
     .contact-section h1 {
         font-size: 32px;
-        color: #000000;
+        color: #ffffff;
         text-decoration: overline;
         margin-bottom: 40px;
         font-weight: 800;
@@ -267,12 +267,14 @@ body {
     flex: 1;
     padding: 0px;
   }
-  
-  .info-item h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #ffffff;
-  }
+
+    .info-item h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #f30707;
+        font-family: math;
+        font-weight: revert;
+    }
   
   .info-item p {
     font-size: 16px;
@@ -341,7 +343,7 @@ input[type="tel"] {
   margin-right: 5px;
 }
 
-#message
+#f_message
 {
   height:103px;
 }
@@ -397,12 +399,23 @@ input[type="submit"]:hover
     position: absolute;
     padding: 1rem 1rem;
     margin-bottom: 1rem;
-    border: 1px solid transparent;
+    border: 1px solid #198754;
     border-radius: .25rem;
 }
 
- .alert-danger {
-    color: #b70010;
-    background-color: #ffe7e9bf;
-    border-color: #d50000;
+.alert-danger {
+    color: #198754;
+    background-color: #e7ffe9bf;
+    border-color: #198754;
 }
+.alert2 {
+    margin-left: 150px;
+    position: absolute;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #198754;
+    border-radius: .25rem;
+}
+
+
+
