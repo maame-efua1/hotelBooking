@@ -50,9 +50,10 @@
     text-align: left;
   }
 
-   .ttx {
-        justify-content:center;
-        color:red;
+.ttx {
+    justify-content: center;
+    color: red;
+}
 
     .room-table th {
         background-color: #f2f2f2;

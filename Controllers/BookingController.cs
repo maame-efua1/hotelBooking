@@ -114,7 +114,8 @@ namespace BookWithEase.Controllers
                         checkIn = checkIn,
                         checkOut = checkOut,
                         dateBooked = dateBooked,
-                        stayDuration = stayDuration
+                        stayDuration = stayDuration,
+                        totalPrice = Convert.ToDecimal(pricePernight) * Convert.ToDecimal(stayDuration),
 
                     };
 
@@ -162,13 +163,13 @@ namespace BookWithEase.Controllers
 
 
                 string queryBooking = "INSERT INTO Booking (CheckIn, CheckOut, totalPrice, customerId, roomId, dateBooked) " +
-                                               "VALUES (@checkIn, @checkOut, @totalPrice, @customerId, @roomId, @dateBooked);";
+                                               "VALUES (@checkIn, @checkOut, @totalPrice, @customerId, @roomId, @dateBooked1);";
 
                 SqlCommand command2 = new SqlCommand(queryBooking, connection);
 
-                command2.Parameters.AddWithValue("@checkIn", Booking.checkIn);
-                command2.Parameters.AddWithValue("@checkOut", Booking.checkOut);
-                command2.Parameters.AddWithValue("@dateBooked", Booking.dateBooked1);
+                command2.Parameters.AddWithValue("@checkIn", Convert.ToDateTime(Booking.checkIn));
+                command2.Parameters.AddWithValue("@checkOut", Convert.ToDateTime(Booking.checkOut));
+                command2.Parameters.AddWithValue("@dateBooked1", Booking.dateBooked1);
                 command2.Parameters.AddWithValue("@totalPrice", Booking.totalPrice);
                 command2.Parameters.AddWithValue("@roomId", roomid);
                 command2.Parameters.AddWithValue("@customerId", customerId);
