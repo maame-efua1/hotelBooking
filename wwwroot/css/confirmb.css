@@ -41,9 +41,13 @@
   margin-bottom: 20px;
 }
 
-.form-section h2 {
-  margin-bottom: 10px;
-}
+
+    .form-section h2 {
+        margin-bottom: 10px;
+        font-family: math;
+        font-weight: bold;
+        text-decoration: underline;
+    }
 
 .form-row {
   display: flex;
@@ -90,7 +94,7 @@
 
 .room-details {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .booking-dates{
@@ -102,7 +106,8 @@
   width: 48%;
 }
 
-#bookingdates label{
-
+.reservation-form .column2 {
+    display: flex;
+    justify-content: center;
 }
 

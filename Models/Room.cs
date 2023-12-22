@@ -20,6 +20,10 @@
 
         public string dateBooked { get; set; }
 
+        public decimal totalPrice { get; set; }
+
+        public string stayDuration { get; set; }
+
         public string successMessage { get; set; } = "Room has been successfully booked. You'll recieve an email with your booking details. Thank you.";
 
     }

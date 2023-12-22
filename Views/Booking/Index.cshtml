@@ -5,6 +5,7 @@
     <title>BookWithEase</title>
     <link rel="stylesheet" href="~/css/bpage.css">
     <script src="https://kit.fontawesome.com/8dae890511.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     
@@ -20,6 +21,10 @@
                     <input type="date" id="checkOut" name="checkOut" min="" required>
             </div>
             <div class="form-row1">
+                <label for="stay-duration">Stay Duration:</label>
+                    <input type="number" id="stayDuration" name="stayDuration" value="" min="1" required readonly>
+            </div>
+            <div class="form-row1" id="stayDuration">
                 <label for="guests">Number of Guests:</label>
                 <input type="number" id="guests" name="guests" min="1" required>
             </div>
@@ -33,6 +38,36 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('checkOut').min = today;
         document.getElementById('checkIn').min = today;
+
+        document.getElementById('checkIn').addEventListener('change', function () {
+            const checkInDate = new Date(this.value);
+            document.getElementById('checkOut').min = this.value;
+            document.getElementById('checkOut').disabled = false;
+
+            // Reset the value of checkOut if it's before checkIn
+            const checkOutDate = new Date(document.getElementById('checkOut').value);
+            if (checkOutDate < checkInDate) {
+                document.getElementById('checkOut').value = this.value;
+            }
+        });
+</link>
+<script>
+    document.getElementById('checkOut').addEventListener('change', function() {
+        var checkIn = new Date(document.getElementById('checkIn').value);
+        var checkOut = new Date(this.value);
+
+        var millisecondsPerDay = 1000 * 60 * 60 * 24;
+        var stayDuration = (checkOut - checkIn) / millisecondsPerDay;
+
+            // If check-in and check-out are equal, set stayDuration to 1 day
+            if (stayDuration === 0) {
+                stayDuration = 1;
+            } else {
+                stayDuration = Math.ceil(stayDuration);
+            }
+        // Update the stay duration input field
+        document.getElementById('stayDuration').value = Math.ceil(stayDuration);
+    });
 </script>
 </body>
 </html>
